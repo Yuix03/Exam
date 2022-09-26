@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Blog</title>
+</head>
+
+<body>
+{% for i in blog %}
+<h3><a href="/blog/{{i.id}}/">{{i.title}}</a>></h3>
+{% endfor %}
+ <form action="/login/"> {% csrf_token %}
+<button type="submit">Log out</button>
+ </form>
+
+</body>
+</html>

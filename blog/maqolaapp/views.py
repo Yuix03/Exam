@@ -1,0 +1,29 @@
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate
+# Create your views here.
+from django.views import View
+
+
+
+from maqolaapp.models import Blog
+
+
+class BlogView(View):
+    def get(self, request ):
+        if request.user.is_authenticated:
+            data = {
+                'blog': Blog.objects.all()
+            }
+            return render(request, 'Blog.html', data)
+        else:
+            return redirect('/login/')
+
+class BlogidView(View):
+    def get(self, request, a):
+        b=Blog.objects.get(id=a)
+
+        data =  {
+              'uuu': b
+        }
+        return render(request,'Blogid.html',data)
+
