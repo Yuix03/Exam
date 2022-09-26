@@ -7,12 +7,15 @@ from django.views import View
 
 from maqolaapp.models import Blog
 
+from userapp.models import Muallif
+
 
 class BlogView(View):
-    def get(self, request ):
+    def get(self, request):
+        acc=Muallif.objects.get(user=request.user)
         if request.user.is_authenticated:
             data = {
-                'blog': Blog.objects.all()
+                'blog': Blog.objects.filter(user=acc)
             }
             return render(request, 'Blog.html', data)
         else:
